@@ -1,7 +1,9 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TendenciaCentral {
 	
@@ -20,10 +22,47 @@ public class TendenciaCentral {
 		numeros.add(5.0f);
 		numeros.add(8.0f);
 		numeros.add(9.0f);
+		numeros.add(9.0f);
+		numeros.add(9.0f);
+		
+		
 		// 9
 		// Mediana = 4
 		calcularMedia(numeros);		
 		calcularMediana(numeros);
+		calcularModa(numeros);
+	}
+	
+	// Calcular Moda
+	public static void calcularModa(List<Float> numeros) {
+		Map<Float, Integer> frequenciaNumeros = new HashMap<>();
+		
+		int maiorFrequencia = 0;
+		
+		for (Float numero : numeros) {
+			// Verificar se o número já está na lista
+			Integer quantidade = frequenciaNumeros.get(numero);
+			// Lista de números
+			if (quantidade == null) {
+				quantidade = 1;
+			}  else {
+				quantidade += 1;
+			}
+			frequenciaNumeros.put(numero, quantidade);
+			
+			if (maiorFrequencia < quantidade) {
+				maiorFrequencia = quantidade;
+			}
+		}
+		System.out.print("A(s) moda(s) é (são) : ");
+		for (Float numeroChave : frequenciaNumeros.keySet()) {
+			int quantidade = frequenciaNumeros.get(numeroChave);
+			if (maiorFrequencia == quantidade) {
+				System.out.print(numeroChave + " ");
+			}
+		}
+		
+		
 	}
 	
 	// Média, mediana e moda
